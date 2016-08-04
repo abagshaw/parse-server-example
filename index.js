@@ -39,13 +39,14 @@ const dashboard = new ParseDashboard({
      }
    ]
 }, true);
-app.use('/admin', dashboard);
 
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
 var app = express();
+
+app.use('/admin', dashboard);
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));

@@ -26,7 +26,7 @@ const dashboard = new ParseDashboard({
   "allowInsecureHTTP": true,
   "apps": [
     {   // serverURL, appId, masterKey are same as ParseServer's settings
-      "serverURL": "https://appName.herokuapp.com/parse",
+      "serverURL": process.env.SERVER_URL || 'http://localhost:1337/parse',
       "appId": process.env.APP_ID || 'myAppId',
       "masterKey": process.env.MASTER_KEY || '',
       "appName": process.env.PARSE_APP_NAME

@@ -108,4 +108,5 @@ Parse.Cloud.define("processTimes", function (request, response) {
 Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
+console.log("functionsdefined!");
 //# sourceMappingURL=app.js.map

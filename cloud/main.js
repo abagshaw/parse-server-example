@@ -100,7 +100,7 @@ Parse.Cloud.define("processTimes", function (request, response) {
     let testClapTimes = [1469596205, 1469596221, 1469596234];
     console.log(request);
     console.log("---");
-    let requestFileInfo = request["data"];
+    let requestFileInfo = request["params"]["data"];
     console.log(requestFileInfo);
     let result = processTimes(testClapTimes, requestFileInfo);
     response.success(result);

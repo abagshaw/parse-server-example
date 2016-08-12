@@ -97,7 +97,6 @@ function processTimes(clapInfo, fileInfo) {
     let result = match(clapDifferences, fileDifferences);
     return result;
 }
-
 function processPossibleClapProjs(fileData, clapDataClass) {
     return __awaiter(this, void 0, Promise, function* () {
         //getClapData
@@ -106,21 +105,21 @@ function processPossibleClapProjs(fileData, clapDataClass) {
         let possibleProjects = yield query.find();
         if (possibleProjects.length === 0)
             return "!ERR!noPossibleProjects";
-        let bestProject;
+        let bestProjectID = "";
         let bestMatch;
         for (let possibleProject of possibleProjects) {
             let clapTimes = possibleProject.get("clapTimes");
             let tmpMatch = processTimes(clapTimes, fileData);
             if ((typeof bestMatch === 'undefined' || tmpMatch[0] > bestMatch[0] || (tmpMatch[0] === bestMatch[0] && tmpMatch[1] > bestMatch[1])) && tmpMatch[0] > (clapTimes.length * 0.6)) {
-                tmpMatch = bestMatch;
-                bestProject = possibleProject;
+                bestMatch = tmpMatch;
+                bestProjectID = possibleProject.id;
                 if (bestMatch[1] === clapTimes.length)
                     break;
             }
         }
         if (typeof bestMatch === 'undefined')
             return "!ERR!noGoodMatches";
-        return bestMatch[2];
+        return [bestProjectID, bestMatch[2]];
     });
 }
 function processRequest(fileData, clapDataClass, response) {
@@ -142,11 +141,14 @@ function processRequest(fileData, clapDataClass, response) {
         }
     });
 }
-//Parse.initialize("mainCadenceClap1");
-//Parse.serverURL = 'https://parsetestserver.herokuapp.com/parse'
+/* var Parse = require('parse/node');
+Parse.initialize("mainCadenceClap1");
+Parse.serverURL = 'https://parsetestserver.herokuapp.com/parse';
+let fileData = [{ "fileID": 0, "startTime": 1469595543, "duration": 3 }, { "fileID": 1, "startTime": 1469595551, "duration": 7 }, { "fileID": 2, "startTime": 1469595563, "duration": 11 }, { "fileID": 3, "startTime": 1469595577, "duration": 1 }, { "fileID": 4, "startTime": 1469595586, "duration": 9 }, { "fileID": 5, "startTime": 1469595597, "duration": 11 }, { "fileID": 6, "startTime": 1469595611, "duration": 3 }, { "fileID": 7, "startTime": 1469596201, "duration": 9 }, { "fileID": 8, "startTime": 1469596212, "duration": 1 }, { "fileID": 9, "startTime": 1469596216, "duration": 12 }, { "fileID": 10, "startTime": 1469596230, "duration": 4 }, { "fileID": 11, "startTime": 1469596236, "duration": 5 }];
+processRequest(fileData, "clapProjs", null);
+console.log("done"); */
 Parse.Cloud.define("processTimes", function (request, response) {
     let fileData = request.params.fileData;
-    console.log(request);
     processRequest(fileData, "clapProjs", response);
 });
 //# sourceMappingURL=app.js.map

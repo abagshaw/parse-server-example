@@ -131,7 +131,7 @@ function processRequest(fileData, clapDataClass, response) {
                 return;
             }
             else if (result instanceof Array) {
-                response.success(result);
+                response.success(JSON.stringify(result));
                 return;
             }
         }

@@ -91,6 +91,7 @@ function getFileDifferences(fileInfo) {
     return returnData;
 }
 function processTimes(clapInfo, fileInfo) {
+    console.log(fileInfo);
     fileInfo = fileInfo.sort((n1, n2) => n1["startTime"] - n2["startTime"]);
     let clapDifferences = getClapDifferences(clapInfo);
     let fileDifferences = getFileDifferences(fileInfo);

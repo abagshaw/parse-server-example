@@ -119,7 +119,7 @@ function processPossibleClapProjs(fileData, clapDataClass) {
         }
         if (typeof bestMatch === 'undefined')
             return "!ERR!noGoodMatches";
-        return [bestProjectID, bestMatch[2]];
+        return { "objectID": bestProjectID, "matchData": bestMatch[2] };
     });
 }
 function processRequest(fileData, clapDataClass, response) {

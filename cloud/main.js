@@ -145,8 +145,8 @@ function processRequest(fileData, clapDataClass, response) {
 //Parse.initialize("mainCadenceClap1");
 //Parse.serverURL = 'https://parsetestserver.herokuapp.com/parse'
 Parse.Cloud.define("processTimes", function (request, response) {
-    let fileData = request["fileData"];
-    console.log(fileData);
+    let fileData = request.params.fileData;
+    console.log(request);
     processRequest(fileData, "clapProjs", response);
 });
 //# sourceMappingURL=app.js.map

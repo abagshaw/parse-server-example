@@ -130,7 +130,7 @@ function processRequest(fileData, clapDataClass, response) {
                 response.error(result);
                 return;
             }
-            else if (result instanceof Array) {
+            else {
                 response.success(JSON.stringify(result));
                 return;
             }

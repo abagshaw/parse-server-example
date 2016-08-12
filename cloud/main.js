@@ -97,7 +97,7 @@ function processTimes(clapInfo, fileInfo) {
     let result = match(clapDifferences, fileDifferences);
     return result;
 }
-var Parse = require('parse/node');
+var Parse;
 function processPossibleClapProjs(fileData, clapDataClass) {
     return __awaiter(this, void 0, Promise, function* () {
         //getClapData
